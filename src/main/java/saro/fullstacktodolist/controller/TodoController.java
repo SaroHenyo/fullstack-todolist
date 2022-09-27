@@ -30,4 +30,10 @@ public class TodoController {
     public List<TodoDTO> deleteTodo(@PathVariable UUID id) {
         return todoService.deleteTodo(id);
     }
+
+    @GetMapping("/getAll")
+    public List<TodoDTO> getAllTodo() {
+        return  todoService.getAllTodos();
+    }
+
 }

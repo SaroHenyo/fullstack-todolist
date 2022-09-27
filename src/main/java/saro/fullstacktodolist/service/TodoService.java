@@ -1,5 +1,6 @@
 package saro.fullstacktodolist.service;
 
+import org.springframework.data.domain.Sort;
 import saro.fullstacktodolist.dto.TodoDTO;
 import saro.fullstacktodolist.entity.TodoListEntity;
 import saro.fullstacktodolist.model.Todo;
@@ -76,8 +77,8 @@ public class TodoService {
         return getAllTodos();
     }
 
-    private List<TodoDTO> getAllTodos() {
-        List<TodoListEntity> allTodos = todoRepository.findAll();
+    public List<TodoDTO> getAllTodos() {
+        List<TodoListEntity> allTodos = todoRepository.findAll(Sort.by(Sort.Direction.ASC, "createdDate"));
         List<TodoDTO> updatedList = new ArrayList<>();
 
         allTodos.forEach(data -> {
