@@ -3,11 +3,11 @@ import './ImageProfile.css'
 import axios from 'axios'
 import { useDropzone } from 'react-dropzone'
 
-const UserProfiles = () => {
+function UserProfiles() {
   const [userProfiles, setUserProfiles] = useState([])
 
   const fetchUserProfiles = () => {
-    axios.get('http://localhost:8080/image/getAll').then((res) => {
+    axios.get('http://localhost:8080/image/getUserProfiles').then((res) => {
       setUserProfiles(res.data)
     })
   }
@@ -81,7 +81,7 @@ function MyDropzone({ userProfileId }) {
 function ImageProfile() {
   return (
     <div className="App">
-      <div className="row">
+      <div className="row" style={{ marginTop: '100px' }}>
         <UserProfiles />
       </div>
     </div>
