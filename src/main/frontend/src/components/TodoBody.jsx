@@ -9,14 +9,11 @@ export default function TodoBody() {
   const update = useSelector((state) => state.update)
   const [editInput, setEditInput] = useState(update ? update.text : '')
 
-  const { getAllTodo, removeTodo } = bindActionCreators(
+  const { getAllTodo, removeTodo, updateTodo } = bindActionCreators(
     actionTodo,
     useDispatch(),
   )
-  const { setUpdateTodo, saveUpdateTodo } = bindActionCreators(
-    actionUpdate,
-    useDispatch(),
-  )
+  const { setUpdateTodo } = bindActionCreators(actionUpdate, useDispatch())
 
   useEffect(() => {
     getAllTodo()
@@ -28,11 +25,9 @@ export default function TodoBody() {
   }
 
   const saveUpdate = (id) => {
-    const updatedTodo = { id, text: editInput }
-    saveUpdateTodo(updatedTodo)
+    const body = { todoID: id, todo: editInput }
+    updateTodo(body)
   }
-
-  console.log(todos)
 
   return todos.map((data, index) => (
     <div id="tasks" key={index}>
