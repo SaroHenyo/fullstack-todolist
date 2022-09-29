@@ -21,7 +21,7 @@ function UserProfiles() {
       <div className="col-md-6" key={index}>
         {userProfile.userProfileId ? (
           <img
-            src={`http://localhost:8080/image/${userProfile.userProfileId}/downloadImage`}
+            src={`http://localhost:8080/image/${userProfile.userProfileId}/download`}
           />
         ) : null}
         <br />
@@ -47,15 +47,11 @@ function MyDropzone({ userProfileId }) {
     formData.append('file', file)
 
     axios
-      .put(
-        `http://localhost:8080/image/uploadImage/${userProfileId}`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+      .put(`http://localhost:8080/image/${userProfileId}/upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
-      )
+      })
       .then(() => {
         console.log('file uploaded successfully')
         window.location.reload()
